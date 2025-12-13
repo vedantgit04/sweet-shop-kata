@@ -28,4 +28,32 @@ public class SweetController {
         List<Sweet> sweets = sweetService.getAllSweets();
         return new ResponseEntity<>(sweets, HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Sweet>> searchSweets(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice) {
+        return null; // TDD: Fail first
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Sweet> updateSweet(@PathVariable Long id, @RequestBody Sweet sweetDetails) {
+        return null; // TDD: Fail first
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSweet(@PathVariable Long id) {
+        return null; // TDD: Fail first
+    }
+
+    @PostMapping("/{id}/purchase")
+    public ResponseEntity<?> purchaseSweet(@PathVariable Long id, @RequestBody Integer amount) {
+        return null; // TDD: Fail first
+    }
+
+    @PostMapping("/{id}/restock")
+    public ResponseEntity<Sweet> restockSweet(@PathVariable Long id, @RequestBody Integer amount) {
+        return null; // TDD: Fail first
+    }
 }

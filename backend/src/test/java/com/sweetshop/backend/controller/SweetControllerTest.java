@@ -61,4 +61,65 @@ class SweetControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2));
     }
+
+    @Test
+    @WithMockUser
+    void shouldSearchSweets() throws Exception {
+        Sweet s1 = new Sweet("Kaju Katli", "Premium", 20.0, 30);
+        when(sweetService.searchSweets("Kaju", null, null)).thenReturn(Arrays.asList(s1));
+
+        mockMvc.perform(get("/api/sweets/search?keyword=Kaju"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(1));
+    }
+
+    @Test
+    @WithMockUser
+    void shouldUpdateSweet() throws Exception {
+        Sweet updatedSweet = new Sweet("New Name", "New Cat", 15.0, 20);
+        when(sweetService.updateSweet(any(Long.class), any(Sweet.class))).thenReturn(updatedSweet);
+
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put("/api/sweets/1")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedSweet)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("New Name"));
+    }
+
+    @Test
+    @WithMockUser
+    void shouldDeleteSweet() throws Exception {
+        mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete("/api/sweets/1")
+                        .with(csrf()))
+                .andExpect(status().isNoContent()); // Expects 204 No Content
+    }
+
+    @Test
+    @WithMockUser
+    void shouldPurchaseSweet() throws Exception {
+        Sweet sweet = new Sweet("Ladoo", "Trad", 10.0, 90);
+        when(sweetService.purchaseSweet(1L, 10)).thenReturn(sweet);
+
+        mockMvc.perform(post("/api/sweets/1/purchase")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("10")) // Sending integer 10 as body
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.quantity").value(90));
+    }
+
+    @Test
+    @WithMockUser
+    void shouldRestockSweet() throws Exception {
+        Sweet sweet = new Sweet("Ladoo", "Trad", 10.0, 60);
+        when(sweetService.restockSweet(1L, 10)).thenReturn(sweet);
+
+        mockMvc.perform(post("/api/sweets/1/restock")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.quantity").value(60));
+    }
 }
