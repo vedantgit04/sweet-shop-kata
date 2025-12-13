@@ -21,6 +21,6 @@ public class SweetServiceImpl implements SweetService {
     }
     @Override
     public List<Sweet> getAllSweets() {
-        return null; // TDD: Fail first
+        return sweetRepository.findAll();
     }
 }
