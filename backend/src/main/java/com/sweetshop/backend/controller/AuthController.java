@@ -19,11 +19,11 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        return null; // TDD: Fail first
+        return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-        return null; // TDD: Fail first
+        return ResponseEntity.ok(authenticationService.login(request));
     }
 }
