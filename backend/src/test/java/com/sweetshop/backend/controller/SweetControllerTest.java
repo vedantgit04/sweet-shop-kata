@@ -18,7 +18,9 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import java.util.Arrays;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status; // (Likely already there)
 @WebMvcTest(SweetController.class)
 class SweetControllerTest {
 
@@ -45,5 +47,18 @@ class SweetControllerTest {
                         .content(objectMapper.writeValueAsString(sweet)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value("Jalebi"));
+    }
+
+    @Test
+    @WithMockUser
+    void shouldGetAllSweets() throws Exception {
+        Sweet s1 = new Sweet("Jalebi", "Fried", 5.0, 100);
+        Sweet s2 = new Sweet("Barfi", "Milk", 8.0, 50);
+
+        when(sweetService.getAllSweets()).thenReturn(Arrays.asList(s1, s2));
+
+        mockMvc.perform(get("/api/sweets"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(2));
     }
 }
