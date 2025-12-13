@@ -23,4 +23,29 @@ public class SweetServiceImpl implements SweetService {
     public List<Sweet> getAllSweets() {
         return sweetRepository.findAll();
     }
+
+    @Override
+    public List<Sweet> searchSweets(String keyword, Double minPrice, Double maxPrice) {
+        return null; // Fail first
+    }
+
+    @Override
+    public Sweet updateSweet(Long id, Sweet sweetDetails) {
+        return null; // Fail first
+    }
+
+    @Override
+    public void deleteSweet(Long id) {
+        // Do nothing
+    }
+
+    @Override
+    public Sweet purchaseSweet(Long id, Integer amount) {
+        return null; // Fail first
+    }
+
+    @Override
+    public Sweet restockSweet(Long id, Integer amount) {
+        return null; // Fail first
+    }
 }

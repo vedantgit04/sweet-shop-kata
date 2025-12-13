@@ -25,6 +25,7 @@ public class SweetController {
     }
     @GetMapping
     public ResponseEntity<List<Sweet>> getAllSweets() {
-        return null; // TDD: Fail first
+        List<Sweet> sweets = sweetService.getAllSweets();
+        return new ResponseEntity<>(sweets, HttpStatus.OK);
     }
 }
