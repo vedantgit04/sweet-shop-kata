@@ -26,26 +26,51 @@ public class SweetServiceImpl implements SweetService {
 
     @Override
     public List<Sweet> searchSweets(String keyword, Double minPrice, Double maxPrice) {
-        return null; // Fail first
+        return sweetRepository.searchSweets(keyword, minPrice, maxPrice);
     }
 
     @Override
     public Sweet updateSweet(Long id, Sweet sweetDetails) {
-        return null; // Fail first
+        return sweetRepository.findById(id).map(sweet -> {
+            sweet.setName(sweetDetails.getName());
+            sweet.setCategory(sweetDetails.getCategory());
+            sweet.setPrice(sweetDetails.getPrice());
+            sweet.setQuantity(sweetDetails.getQuantity());
+            return sweetRepository.save(sweet);
+        }).orElseThrow(() -> new RuntimeException("Sweet not found with id " + id));
     }
 
     @Override
     public void deleteSweet(Long id) {
-        // Do nothing
+        if (!sweetRepository.existsById(id)) {
+            throw new RuntimeException("Sweet not found with id " + id);
+        }
+        sweetRepository.deleteById(id);
     }
 
     @Override
     public Sweet purchaseSweet(Long id, Integer amount) {
-        return null; // Fail first
+        if (amount <= 0) throw new RuntimeException("Purchase amount must be positive");
+
+        Sweet sweet = sweetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sweet not found with id " + id));
+
+        if (sweet.getQuantity() < amount) {
+            throw new RuntimeException("Insufficient stock. Requested: " + amount + ", Available: " + sweet.getQuantity());
+        }
+
+        sweet.setQuantity(sweet.getQuantity() - amount);
+        return sweetRepository.save(sweet);
     }
 
     @Override
     public Sweet restockSweet(Long id, Integer amount) {
-        return null; // Fail first
+        if (amount <= 0) throw new RuntimeException("Restock amount must be positive");
+
+        Sweet sweet = sweetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sweet not found with id " + id));
+
+        sweet.setQuantity(sweet.getQuantity() + amount);
+        return sweetRepository.save(sweet);
     }
 }
