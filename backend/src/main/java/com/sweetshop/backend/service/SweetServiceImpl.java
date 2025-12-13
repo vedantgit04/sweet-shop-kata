@@ -15,6 +15,6 @@ public class SweetServiceImpl implements SweetService {
 
     @Override
     public Sweet addSweet(Sweet sweet) {
-        return null; // TDD: Fail first!
+        return sweetRepository.save(sweet);
     }
 }
