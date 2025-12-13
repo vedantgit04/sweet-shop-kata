@@ -50,7 +50,7 @@ class AuthenticationServiceTest {
         LoginRequest request = new LoginRequest("existinguser", "pass123");
         User user = new User("existinguser", "encodedPass", "ROLE_USER");
 
-        when(userRepository.findByUsername("existinguser")).thenReturn(java.util.Optional.of(user));
+        //when(userRepository.findByUsername("existinguser")).thenReturn(java.util.Optional.of(user));
         when(jwtService.generateToken("existinguser")).thenReturn("jwt-token");
 
         AuthResponse response = authService.login(request);
