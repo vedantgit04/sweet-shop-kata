@@ -8,6 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -34,5 +37,24 @@ class SweetServiceTest {
         assertNotNull(savedSweet, "Saved sweet should not be null");
         assertEquals("Jalebi", savedSweet.getName());
         verify(sweetRepository, times(1)).save(sweet);
+    }
+    @Test
+    void shouldReturnAllSweets() {
+        // Arrange
+        Sweet s1 = new Sweet("Laddu", "Traditional", 10.0, 50);
+        Sweet s2 = new Sweet("Kaju Katli", "Premium", 20.0, 30);
+
+        // Tell the mock: "When someone asks for findAll(), return this list"
+        when(sweetRepository.findAll()).thenReturn(Arrays.asList(s1, s2));
+
+        // Act
+        List<Sweet> result = sweetService.getAllSweets();
+
+        // Assert
+        assertEquals(2, result.size());
+        assertEquals("Laddu", result.get(0).getName());
+
+        // Verify the repository was actually called
+        verify(sweetRepository, times(1)).findAll();
     }
 }

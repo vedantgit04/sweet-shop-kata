@@ -4,6 +4,8 @@ import com.sweetshop.backend.model.Sweet;
 import com.sweetshop.backend.repository.SweetRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SweetServiceImpl implements SweetService {
 
@@ -16,5 +18,9 @@ public class SweetServiceImpl implements SweetService {
     @Override
     public Sweet addSweet(Sweet sweet) {
         return sweetRepository.save(sweet);
+    }
+    @Override
+    public List<Sweet> getAllSweets() {
+        return null; // TDD: Fail first
     }
 }

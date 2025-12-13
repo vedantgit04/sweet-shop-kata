@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface SweetService {
     Sweet addSweet(Sweet sweet);
+    List<Sweet> getAllSweets(); // New method
 }
