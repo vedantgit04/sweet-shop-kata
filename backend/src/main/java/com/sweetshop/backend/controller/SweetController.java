@@ -23,6 +23,7 @@ public class SweetController {
         Sweet newSweet = sweetService.addSweet(sweet);
         return new ResponseEntity<>(newSweet, HttpStatus.CREATED);
     }
+
     @GetMapping
     public ResponseEntity<List<Sweet>> getAllSweets() {
         List<Sweet> sweets = sweetService.getAllSweets();
@@ -34,26 +35,51 @@ public class SweetController {
             @RequestParam(required = false) String keyword,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice) {
-        return null; // TDD: Fail first
+        List<Sweet> sweets = sweetService.searchSweets(keyword, minPrice, maxPrice);
+        return new ResponseEntity<>(sweets, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Sweet> updateSweet(@PathVariable Long id, @RequestBody Sweet sweetDetails) {
-        return null; // TDD: Fail first
+        try {
+            Sweet updatedSweet = sweetService.updateSweet(id, sweetDetails);
+            return new ResponseEntity<>(updatedSweet, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSweet(@PathVariable Long id) {
-        return null; // TDD: Fail first
+        try {
+            sweetService.deleteSweet(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/{id}/purchase")
     public ResponseEntity<?> purchaseSweet(@PathVariable Long id, @RequestBody Integer amount) {
-        return null; // TDD: Fail first
+        try {
+            Sweet purchasedSweet = sweetService.purchaseSweet(id, amount);
+            return new ResponseEntity<>(purchasedSweet, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            if (e.getMessage().contains("Insufficient stock")) {
+                // Return 400 Bad Request with the specific error message
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/{id}/restock")
     public ResponseEntity<Sweet> restockSweet(@PathVariable Long id, @RequestBody Integer amount) {
-        return null; // TDD: Fail first
+        try {
+            Sweet restockedSweet = sweetService.restockSweet(id, amount);
+            return new ResponseEntity<>(restockedSweet, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
