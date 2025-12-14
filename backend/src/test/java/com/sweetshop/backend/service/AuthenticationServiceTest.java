@@ -14,6 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -36,7 +38,9 @@ class AuthenticationServiceTest {
 
         when(passwordEncoder.encode(request.password())).thenReturn("encodedPass");
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
-        when(jwtService.generateToken("newuser")).thenReturn("jwt-token");
+
+        // FIX: Expect 2 arguments (username, role)
+        when(jwtService.generateToken("newuser", "ROLE_USER")).thenReturn("jwt-token");
 
         AuthResponse response = authService.register(request);
 
@@ -50,14 +54,16 @@ class AuthenticationServiceTest {
         LoginRequest request = new LoginRequest("existinguser", "pass123");
         User user = new User("existinguser", "encodedPass", "ROLE_USER");
 
-        //when(userRepository.findByUsername("existinguser")).thenReturn(java.util.Optional.of(user));
-        when(jwtService.generateToken("existinguser")).thenReturn("jwt-token");
+        // FIX 1: We must now mock findByUsername because the service calls it to find the role
+        when(userRepository.findByUsername("existinguser")).thenReturn(Optional.of(user));
+
+        // FIX 2: Expect the role from the user object we just returned
+        when(jwtService.generateToken("existinguser", "ROLE_USER")).thenReturn("jwt-token");
 
         AuthResponse response = authService.login(request);
 
         assertNotNull(response);
         assertEquals("jwt-token", response.token());
-        // Verify authentication manager was called to check credentials
         verify(authenticationManager).authenticate(any());
     }
 }
