@@ -30,33 +30,34 @@ public class AuthenticationService {
     }
 
     public AuthResponse register(RegisterRequest request) {
-        // 1. Check if user exists
         if (userRepository.existsByUsername(request.username())) {
             throw new RuntimeException("Username already exists");
         }
-
-        // 2. Create User (Encode password!)
         User user = new User();
         user.setUsername(request.username());
         user.setPassword(passwordEncoder.encode(request.password()));
-        // Default to ROLE_USER if not provided
-        user.setRole((request.role() == null || request.role().isEmpty()) ? "ROLE_USER" : request.role());
+        // Ensure role starts with "ROLE_"
+        String role = (request.role() == null || request.role().isEmpty()) ? "ROLE_USER" : request.role();
+        if (!role.startsWith("ROLE_")) role = "ROLE_" + role;
+        user.setRole(role);
 
         userRepository.save(user);
 
-        // 3. Generate Token
-        String token = jwtService.generateToken(user.getUsername());
+        // Pass role here
+        String token = jwtService.generateToken(user.getUsername(), user.getRole());
         return new AuthResponse(token);
     }
 
     public AuthResponse login(LoginRequest request) {
-        // 1. Authenticate (This will throw an exception if credentials are wrong)
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.username(), request.password())
         );
 
-        // 2. Generate Token (If we get here, the user is valid)
-        String token = jwtService.generateToken(request.username());
+        // Fetch user to get the actual role
+        User user = userRepository.findByUsername(request.username()).orElseThrow();
+
+        // Pass role here
+        String token = jwtService.generateToken(user.getUsername(), user.getRole());
         return new AuthResponse(token);
     }
 }
