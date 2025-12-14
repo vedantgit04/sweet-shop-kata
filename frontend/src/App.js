@@ -2,6 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Home from './pages/Home'; // Import the new page
+import authService from './services/authService';
+
+// Simple Route Guard: Redirects to login if no token exists
+const PrivateRoute = ({ children }) => {
+    return authService.isAuthenticated() ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
@@ -9,8 +16,17 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* Placeholder for Home - we'll build this next */}
-        <Route path="/" element={<div className="text-center mt-5"><h1>Welcome to Sweet Shop</h1><a href="/login">Login</a></div>} />
+        
+        {/* Protect the Home route */}
+        <Route 
+          path="/" 
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          } 
+        />
+        
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

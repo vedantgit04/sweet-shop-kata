@@ -1,8 +1,7 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap import
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css'; // <--- IMPORT OUR THEME HERE
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
