@@ -117,8 +117,14 @@ Using AI significantly sped up the boilerplate setup (like Security Config) and 
 
 ## 🧪 Test Report (TDD)
 
-<img width="1920" height="1080" alt="Screenshot (7098)" src="https://github.com/user-attachments/assets/3d61f7b4-10da-4c10-8c6b-6a9450b58491" />
-<img width="1920" height="1080" alt="Screenshot (7099)" src="https://github.com/user-attachments/assets/a54b7749-2a5a-4909-aa39-0d47975ec656" />
+<img width="1920" height="1080" alt="Screenshot (7102)" src="https://github.com/user-attachments/assets/779e4737-1e5d-48cf-a125-1f1623b31004" />
+<img width="1920" height="1080" alt="Screenshot (7103)" src="https://github.com/user-attachments/assets/40f95b91-b5e2-4f61-80f6-10b3c5dff60c" />
+<img width="1920" height="1080" alt="Screenshot (7104)" src="https://github.com/user-attachments/assets/7b30fc4d-7c1e-4638-8753-e92084c03d51" />
+<img width="1920" height="1080" alt="Screenshot (7105)" src="https://github.com/user-attachments/assets/875186a6-50c6-4910-9315-2745152b94f5" />
+<img width="1920" height="1080" alt="Screenshot (7106)" src="https://github.com/user-attachments/assets/00240675-dfa9-4841-80e0-e287ad398134" />
+
+
+
 <img width="1920" height="1080" alt="Screenshot (7100)" src="https://github.com/user-attachments/assets/a0c9fc86-d105-483c-8153-ddb7051d6ac6" />
 <img width="1920" height="1080" alt="Screenshot (7101)" src="https://github.com/user-attachments/assets/01d6063a-0131-44f1-93b4-ad6e101cecf8" />
 
