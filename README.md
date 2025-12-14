@@ -1,4 +1,4 @@
-# 🍬 Royal Sweet Shop - Full Stack Management System
+<img width="1920" height="1080" alt="Screenshot (7076)" src="https://github.com/user-attachments/assets/d88f0fc9-0245-4880-b2ef-a6b73eadac65" /># 🍬 Royal Sweet Shop - Full Stack Management System
 
 A premium, full-stack Sweet Shop Management System built using **Test Driven Development (TDD)** principles. This application features a secure Spring Boot backend with JWT authentication and a luxurious React frontend with role-based access control.
 
@@ -6,23 +6,31 @@ A premium, full-stack Sweet Shop Management System built using **Test Driven Dev
 
 ## 🎥 Project Demo
 
-*(Upload your demo video here showing Login, Admin Restock, and User Purchase flow)*
+
+https://github.com/user-attachments/assets/1c1baae9-6540-44fa-aa9d-c47fb27adcaf
+
 
 ### 📸 Screenshots
 
 #### 1. Premium Login & Registration
-*(Place screenshot of Login page here)*
+
+<img width="1920" height="1080" alt="Screenshot (7087)" src="https://github.com/user-attachments/assets/06c0574b-1a9f-4df1-9980-301126304c96" />
+<img width="1920" height="1080" alt="Screenshot (7089)" src="https://github.com/user-attachments/assets/891273e3-d279-4f64-97a7-ca0f4efd04f5" />
+<img width="1920" height="1080" alt="Screenshot (7090)" src="https://github.com/user-attachments/assets/33c8747b-88f2-4f56-b429-9fdf7a71de74" />
+
 
 #### 2. Dashboard (User View - Purchase)
-*(Place screenshot of User Dashboard with "Buy Now" buttons here)*
+<img width="1920" height="1080" alt="Screenshot (7093)" src="https://github.com/user-attachments/assets/cb97e3af-6bf8-43d4-be5e-9e592e9cecbe" />
+<img width="1920" height="1080" alt="Screenshot (7092)" src="https://github.com/user-attachments/assets/444ecc68-64fe-4171-b56e-0e5beda1d06f" />
+
 
 #### 3. Dashboard (Admin View - Restock/Delete)
-*(Place screenshot of Admin Dashboard with "Add Sweet" and "Restock" buttons here)*
+<img width="1920" height="1080" alt="Screenshot (7096)" src="https://github.com/user-attachments/assets/f70b6179-2d7e-490c-b662-7fe8efe3da9c" /> 
+<img width="1920" height="1080" alt="Screenshot (7094)" src="https://github.com/user-attachments/assets/f5aad381-3d4f-4344-b2bd-8347e811486e" />
+<img width="1920" height="1080" alt="Screenshot (7095)" src="https://github.com/user-attachments/assets/a7db2d04-ab89-40ec-8a05-91899e8bd04d" />
+<img width="1920" height="1080" alt="Screenshot (7096)" src="https://github.com/user-attachments/assets/d80514f5-9f2c-4e01-8eff-6d2ce123cb31" />
+<img width="1920" height="1080" alt="Screenshot (7097)" src="https://github.com/user-attachments/assets/9dca836a-13d5-4ae1-a344-2cd9090b7dda" />
 
-#### 4. Premium Custom Modals
-*(Place screenshot of the "Sweetness Confirmed" or "Stock Updated" popup here)*
-
----
 
 ## 🤖 My AI Usage
 
@@ -106,7 +114,11 @@ Using AI significantly sped up the boilerplate setup (like Security Config) and 
 ---
 
 ## 🧪 Test Report (TDD)
-*(You can run tests using `./mvnw test` and paste a screenshot of the green checkmarks here)*
+
+<img width="1920" height="1080" alt="Screenshot (7098)" src="https://github.com/user-attachments/assets/3d61f7b4-10da-4c10-8c6b-6a9450b58491" />
+<img width="1920" height="1080" alt="Screenshot (7099)" src="https://github.com/user-attachments/assets/a54b7749-2a5a-4909-aa39-0d47975ec656" />
+<img width="1920" height="1080" alt="Screenshot (7100)" src="https://github.com/user-attachments/assets/a0c9fc86-d105-483c-8153-ddb7051d6ac6" />
+<img width="1920" height="1080" alt="Screenshot (7101)" src="https://github.com/user-attachments/assets/01d6063a-0131-44f1-93b4-ad6e101cecf8" />
 
 ---
 
