@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="Screenshot (7076)" src="https://github.com/user-attachments/assets/d88f0fc9-0245-4880-b2ef-a6b73eadac65" /># 🍬 Royal Sweet Shop - Full Stack Management System
+# 🍬 Royal Sweet Shop - Full Stack Management System
 
 A premium, full-stack Sweet Shop Management System built using **Test Driven Development (TDD)** principles. This application features a secure Spring Boot backend with JWT authentication and a luxurious React frontend with role-based access control.
 
@@ -14,9 +14,11 @@ https://github.com/user-attachments/assets/1c1baae9-6540-44fa-aa9d-c47fb27adcaf
 
 #### 1. Premium Login & Registration
 
+<img width="1920" height="1080" alt="Screenshot (7076)" src="https://github.com/user-attachments/assets/d88f0fc9-0245-4880-b2ef-a6b73eadac65" />
 <img width="1920" height="1080" alt="Screenshot (7087)" src="https://github.com/user-attachments/assets/06c0574b-1a9f-4df1-9980-301126304c96" />
 <img width="1920" height="1080" alt="Screenshot (7089)" src="https://github.com/user-attachments/assets/891273e3-d279-4f64-97a7-ca0f4efd04f5" />
 <img width="1920" height="1080" alt="Screenshot (7090)" src="https://github.com/user-attachments/assets/33c8747b-88f2-4f56-b429-9fdf7a71de74" />
+
 
 
 #### 2. Dashboard (User View - Purchase)
